@@ -1,0 +1,25 @@
+{{#each errors}}
+<div class="alert alert-danger">{{text}}</div>
+{{else}}
+
+{{/each}}
+
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/category/new" method="post" autocomplete="off">
+            <header>
+                <h1>Cadastrar Categoria</h1>
+                <span style="font-size: 1.325em;">Preencha o Formulário</span>
+            </header>
+        
+            <label for="name" class="d-none">Nome da Categoria</label>
+                <input type="text" name="name" id="name" placeholder="Nome da Categoria" class="form-control mt-4">
+            <label for="slug" class="d-none">Slug da Categoria</label>
+                <input type="text" name="slug" id="slug" placeholder="Slug da Categoria" class="form-control mt-4">
+            <a href="/admin/category">
+                <button type="button" class="btn btn-danger mt-4">Cancelar</button>
+            </a>
+            <button type="submit" class="btn btn-success mt-4">Salvar</button>
+        </form>
+    </div>
+</div>

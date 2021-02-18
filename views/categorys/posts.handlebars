@@ -1,0 +1,14 @@
+<h1>{{categorys.name}}</h1>
+
+{{#each posts}}
+<div class="card mt-3">
+    <div class="card-body">
+        <h1>{{this.title}}</h1>
+        <p>{{this.description}} <a href="/posts/{{this.slug}}" class="text-decoration-none">Leia mais</a></p>
+        <hr>
+        <small>Data de Públicação: {{this.date}}</small>
+    </div>
+</div>
+{{else}}
+<span class="m-2">Não há nenhuma postagem cadastrada com essa categoria.</span>
+{{/each}}

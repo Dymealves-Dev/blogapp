@@ -1,0 +1,40 @@
+{{#each errors}}
+<div class="alert alert-danger">{{this.text}}</div>
+{{else}}
+
+{{/each}}
+
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/posts/edit" method="POST" autocomplete="off">
+            <header>
+                <h1>Editar Postagem</h1>
+                <span style="font-size: 1.325em;">Preencha o Formulário</span>
+            </header>
+
+            <input type="hidden" name="id" value="{{this.posts._id}}">
+
+            <label for="title" class="d-none">Título</label>
+                <input type="text" name="title" id="title" class="form-control mt-3" placeholder="Título da Postagem" value="{{this.posts.title}}">
+            <label for="slug" class="d-none">Slug</label>
+                <input type="text" name="slug" id="slug" class="form-control mt-3" placeholder="Slug da Postagem" value="{{this.posts.slug}}">
+            <label for="description" class="d-none">Descrição</label>
+                <input type="text" name="description" id="description" class="form-control mt-3" placeholder="Descrição da Postagem" value="{{this.posts.description}}">
+            <label for="content" class="d-none">Conteúdo</label>
+                <textarea name="content" id="content" class="form-control mt-4" cols="30" rows="8" placeholder="Conteúdo da Postagem" style="resize: none;">{{this.posts.content}}</textarea>
+            <label for="category" class="d-none">Categoria</label>
+                <select name="category" id="category" class="form-select mt-3">
+                    {{#each categorys}}
+                        <option value="{{this._id}}">{{this.name}}</option>
+                    {{else}}
+                        <option value="0">Nehuma categoria cadastrada</option>
+                    {{/each}}
+                </select>
+
+            <a href="/admin/posts">
+                <button type="button" class="btn btn-danger mt-4">Cancelar</button>
+            </a>
+            <button type="submit" class="btn btn-success mt-4">Salvar</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container d-flex justify-content-between align-items-center">
+    <h1>Lista de Categorias</h2>
+    <a href="/admin/category/create"><button type="button" class="btn btn-success">Cadastrar Categoria</button></a>
+</div>
+
+<hr>
+
+{{#each categorys}}
+<div class="card mt-3">
+    <div class="card-body">
+        <h1>{{this.name}}</h1>
+        <small>Slug: {{this.slug}}</small> 
+        <br>
+        <small>Data de Criação: {{this.date}}</small>
+        <br>
+
+        <div class="container-btn d-flex mt-4">
+            <form action="/admin/category/delete" method="POST">
+                <input type="hidden" name="id" value="{{this._id}}">
+                <button type="submit" class="btn btn-danger me-2">Deletar Categoria</button>
+            </form>
+            <a href="/admin/category/edit/{{this._id}}">
+            <button type="button" class="btn btn-success">Editar Categoria</button>
+            </a>
+        </div>
+    </div>
+</div>
+{{else}}
+    <span class="m-2">Não há nenhuma categoria cadastrada.</span>
+{{/each}}

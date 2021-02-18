@@ -1,0 +1,27 @@
+{
+  "name": "sistema_de_blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "init": "^0.1.2",
+    "mongoose": "^5.11.15",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

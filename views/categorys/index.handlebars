@@ -1,0 +1,17 @@
+<div class="container d-flex justify-content-between align-items-center">
+    <h1>Lista de Categorias</h2>
+</div>
+
+<hr>
+
+{{#each categorys}}
+<div class="card mt-3">
+    <div class="card-body">
+        <a href="/categorys/{{this.slug}}" class="text-secondary">
+            <h1>{{this.name}}</h1>
+        </a>
+    </div>
+</div>
+{{else}}
+<span class="m-2">Não há nenhuma categoria cadastrada.</span>
+{{/each}}

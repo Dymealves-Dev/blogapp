@@ -1,0 +1,33 @@
+<div class="container d-flex justify-content-between align-items-center">
+    <h1>Lista de Usuários</h2>
+</div>
+
+<hr>
+
+{{#each users}}
+<ul class="list-group mt-3">    
+    <li class="list-group-item">
+        <div>
+            <span class="h4 text-capitalize">{{this.fullName}}</span>
+            <p class="h6">Email do Usuário: <span>{{this.email}}</span></p>
+            <p class="h6">Esse usuário tem permissões de: <span class="text-capitalize">{{this.permissions}}</span></p>
+        </div>
+
+        <hr>
+
+        <div class="container-btn d-flex">
+            <form action="/admin/users/delete" method="POST">
+                <input type="hidden" name="id" value="{{this._id}}">
+
+                <button type="submit" class="btn btn-danger me-2">Deletar Usuário</button>
+            </form>
+
+            <form action="/admin/users/edit/{{this._id}}" method="POST">
+                <button type="submit" class="btn btn-success">Editar Usuário</button>
+            </form>
+        </div>
+    </li>
+</ul>
+{{else}}
+<span class="m-2">Não há nenhum usuário cadastrado.</span>
+{{/each}}

@@ -1,0 +1,36 @@
+<div class="container d-flex justify-content-between align-items-center">
+    <h1>Lista de Postagens</h2>
+    <a href="/admin/posts/create"><button type="button" class="btn btn-success">Cadastrar Postagem</button></a>
+</div>
+
+<hr>
+
+{{#each post}}
+<div class="card mt-3">
+    <div class="card-body">
+        <h1>{{this.title}}</h1>
+        <p>{{this.description}}</p>
+        <hr>
+        <p>{{this.content}}</p>
+        <hr>
+        <small>Slug: {{this.slug}}</small>
+        <br>
+        <small>Categoria: {{this.category.name}}</small>
+        <br>
+        <small>Data de Criação: {{this.date}}</small>
+        <br>
+
+        <div class="container-btn d-flex mt-4">
+            <form action="/admin/posts/delete" method="POST">
+                <input type="hidden" name="id" value="{{this._id}}">
+                <button type="submit" class="btn btn-danger me-2">Deletar Postagem</button>
+            </form>
+            <a href="/admin/posts/edit/{{this._id}}">
+            <button type="button" class="btn btn-success">Editar Postagem</button>
+            </a>
+        </div>
+    </div>
+</div>
+{{else}}
+<span class="m-2">Não há nenhuma categoria cadastrada.</span>
+{{/each}}
