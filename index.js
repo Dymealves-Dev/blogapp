@@ -39,7 +39,7 @@ mongoose.Promise = global.Promise
 
 const databaseURI = mongoURI()
 
-await mongoose.connect(databaseURI, {
+await mongoose.connect("mongodb+srv://DymeAlves:U6pxSHrha8XyhVAK@cluster0.lawml.mongodb.net/Cluster0?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
