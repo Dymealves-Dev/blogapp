@@ -9,8 +9,15 @@
     <li class="list-group-item">
         <div>
             <span class="h4 text-capitalize">{{this.fullName}}</span>
+            <hr>
             <p class="h6">Email do Usuário: <span>{{this.email}}</span></p>
-            <p class="h6">Esse usuário tem permissões de: <span class="text-capitalize">{{this.permissions}}</span></p>
+            <p class="h6">Esse usuário tem permissões de:
+                {{#if this.permissions}}
+                <span class="text-capitalize">{{this.permissions}}</span>
+                {{else}}
+                <span>Esse usuário não tem uma permissão.</span>
+                {{/if}}
+            </p>
         </div>
 
         <hr>
