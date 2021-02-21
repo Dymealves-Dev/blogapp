@@ -1,0 +1,30 @@
+{{#each errors}}
+<div class="alert alert-danger">{{this.text}}</div>
+{{else}}
+
+{{/each}}
+
+<div class="card">
+    <div class="card-body">
+        <form action="/contact" method="POST" autocomplete="off">
+            <header>
+                <h1>Entrar em Contato</h1>
+                <span style="font-size: 1.325em;">Preencha o Formulário</span>
+            </header>
+
+            <label for="fullName" class="d-none">Nome completo</label>
+                <input type="text" name="fullName" id="fullName" class="form-control mt-3" placeholder="Digite seu nome completo">
+            <label for="email" class="d-none">Endereço de email</label>
+                <input type="email" name="email" id="email" class="form-control mt-3" placeholder="Digite seu endereço de email">
+            <label for="subject" class="d-none">Assunto da mensagem</label>
+                <input type="text" name="subject" id="subject" class="form-control mt-3" placeholder="Digite o assunto de sua mensagem">
+            <label for="message" class="d-none">Mensagem</label>
+                <textarea name="message" id="message" cols="30" rows="10" class="form-control mt-4" placeholder="Digite sua mensagem" style="resize: none;"></textarea>
+
+            <a href="/">
+                <button type="button" class="btn btn-danger mt-4">Cancelar</button>
+            </a>
+            <button type="submit" class="btn btn-success mt-4">Enviar</button>
+        </form>
+    </div>
+</div>

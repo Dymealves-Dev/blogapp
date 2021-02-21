@@ -6,6 +6,7 @@ import path from "path"
 import session from "express-session"
 import flash from "connect-flash"
 import passport from "passport"
+import nodemailer from "nodemailer"
 import { admin } from "./routes/admin.js"
 import { user } from "./routes/user.js"
 import { posts } from "./models/posts.js"
@@ -135,6 +136,61 @@ app.get("/categorys/:slug", (req, res) => {
         req.flash("error_msg", "Falha ao exibir conteúdo")
         res.redirect("/")
     })
+})
+
+app.get("/contact", (req, res) => {
+    res.render("contact/index")
+})
+
+app.post("/contact", (req, res) => {
+    const errors = []
+
+    if(!req.body.fullName || typeof req.body.fullName === undefined || req.body.fullName === null) {
+        errors.push({ text: "Nome inválido" })
+    }
+
+    if(!req.body.email || typeof req.body.email === undefined || req.body.email === null) {
+        errors.push({ text: "Email inválido" })
+    }
+
+    if(!req.body.subject || typeof req.body.subject === undefined || req.body.subject === null) {
+        errors.push({ text: "Assunto da mensagem inválido" })
+    }
+
+    if(!req.body.message || typeof req.body.message === undefined || req.body.message === null) {
+        errors.push({ text: "Mensagem inválida" })
+    }
+
+    if(errors.length) {
+        res.render("contact/index", {
+            errors: errors,
+        })
+    } else {
+        const user = "blogdonode@gmail.com"
+        const pass = "blogdonode.js!"
+
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: user,
+                pass: pass
+            }
+        })
+
+        transporter.sendMail({
+            from: `${req.body.email} <${req.body.fullName}>`,
+            to: user,
+            subject: `${req.body.subject}`,
+            text: `${req.body.message}`,
+            html: `<p style="font-size: 2.225em;">${req.body.message}</p> <br> <span style="font-size: 1.225em; font-style: italic;">Atenciosamente equipe do Blog do Node.js</span>`
+        }).then(() => {
+            req.flash("success_msg", "E-mail enviado com sucesso!")
+            res.redirect("/")
+        }).catch(error => {
+            req.flash("error_msg", "Falha ao enviar email")
+            res.redirect("/")
+        })
+    }
 })
 
 app.use("/user", user)
