@@ -7,10 +7,13 @@ import session from "express-session"
 import flash from "connect-flash"
 import passport from "passport"
 import nodemailer from "nodemailer"
+
 import { admin } from "./routes/admin.js"
 import { user } from "./routes/user.js"
+
 import { posts } from "./models/posts.js"
 import { categorys } from "./models/categorys.js"
+
 import { authentication } from "./config/authentication.js"
 import { mongoURI } from "./config/database.js"
 
