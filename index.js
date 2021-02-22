@@ -202,7 +202,7 @@ app.use("/admin", admin)
 
 /* Configurando Servidor */
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
     console.log(`Servidor On-line em http://localhost:${PORT}!`)
 })
