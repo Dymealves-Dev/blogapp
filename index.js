@@ -177,7 +177,7 @@ app.post("/contact", (req, res) => {
         })
     } else {
         const user = "blogpodpah@gmail.com"
-        const pass = "blogpodpah!"
+        const pass = "blogdopodpah!"
 
         const transporter = nodemailer.createTransport({
             service: "gmail",
@@ -197,6 +197,7 @@ app.post("/contact", (req, res) => {
             req.flash("success_msg", "E-mail enviado com sucesso!")
             res.redirect("/")
         }).catch(error => {
+            console.log(error)
             req.flash("error_msg", "Falha ao enviar email")
             res.redirect("/")
         })
