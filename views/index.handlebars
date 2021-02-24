@@ -3,18 +3,16 @@
 {{else}}
 
 {{/each}}
-
+<div class="jumbotron">
+  <h1 class="display-4">Bem-vindo ao blog de notícias do Podpah!</h1>
+  <p class="lead">Esse blog foi feito para levar as novidades do Podpah até você em um piscar de olhos.</p>
+  <hr>
 {{#if user}}
 
 {{else}}
-<div class="jumbotron">
-  <h1 class="display-4">Bem-vindo ao blog do Node.Js!</h1>
-  <p class="lead">Este blog foi desenvolvido para levar as novidades até você em um piscar de olhos.</p>
-  <hr>
-
   <p>Crie sua conta agora e seja sempre o primeiro a receber as novidades.</p>
   <p class="lead">
-    <a class="btn btn-primary btn-lg" href="/user/register" role="button">Crie sua conta</a>
+    <a class="btn btn-warning btn-lg" href="/user/register" role="button">Crie sua conta</a>
   </p>
 </div>
 
