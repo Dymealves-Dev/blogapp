@@ -192,7 +192,7 @@ app.post("/contact", (req, res) => {
             to: user,
             subject: `${req.body.subject}`,
             text: `${req.body.message}`,
-            html: `<p style="font-size: 2.225em;">${req.body.message}</p> <br> <span style="font-size: 1.225em; font-style: italic;">Atenciosamente equipe do Blog do Node.js</span>`
+            html: `<p style="font-size: 2.225em;">${req.body.message}</p> <br> <span style="font-size: 1.225em; font-style: italic;">Atenciosamente equipe do Blog do Podpah</span>`
         }).then(() => {
             req.flash("success_msg", "E-mail enviado com sucesso!")
             res.redirect("/")
