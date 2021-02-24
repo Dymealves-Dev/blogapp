@@ -176,8 +176,8 @@ app.post("/contact", (req, res) => {
             page: "Contato"
         })
     } else {
-        const user = "blogdonode@gmail.com"
-        const pass = "blogdonode.js!"
+        const user = "blogpodpah@gmail.com"
+        const pass = "blogpodpah!"
 
         const transporter = nodemailer.createTransport({
             service: "gmail",
