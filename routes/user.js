@@ -7,7 +7,9 @@ import { users } from "../models/users.js"
 export const user = express.Router()
 
 user.get("/register", (req, res) => {
-    res.render("users/register")
+    res.render("users/register", {
+        page: "Cadastrar-se"
+    })
 })
 
 user.post("/register", (req, res) => {
@@ -35,7 +37,8 @@ user.post("/register", (req, res) => {
 
     if(errors.length) {
         res.render("users/register", {
-            errors: errors
+            errors: errors,
+            page: "Cadastrar-se"
         })
     } else {
         users.findOne({ email: req.body.email }).then(user => {
@@ -77,7 +80,9 @@ user.post("/register", (req, res) => {
 })
 
 user.get("/login", (req, res) => {
-    res.render("users/login")
+    res.render("users/login", {
+        page: "Entrar"
+    })
 })
 
 user.post("/login", (req, res, next) => {

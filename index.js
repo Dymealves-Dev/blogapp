@@ -87,7 +87,8 @@ app.use(express.static(path.join("public")))
 app.get("/", (req, res) => {
     posts.find().populate("category").sort({ date: "desc" }).then(posts => {
         res.render("index", {
-            posts: posts
+            posts: posts,
+            page: "Início"
         })
     }).catch(error => {
         req.flash("error_msg", "Falha ao exibir contéudo")
@@ -99,7 +100,8 @@ app.get("/posts/:slug", (req, res) => {
     posts.findOne({ slug: req.params.slug }).populate("category").then(posts => {
         if(posts) {
             res.render("posts/index", {
-                posts: posts
+                posts: posts,
+                page: `${posts.title}`
             })
         } else {
             req.flash("error_msg", "Essa postagem não existe")
@@ -114,7 +116,8 @@ app.get("/posts/:slug", (req, res) => {
 app.get("/categorys", (req, res) => {
     categorys.find().sort({ date: "desc" }).then(categorys => {
         res.render("categorys/index", {
-            categorys: categorys
+            categorys: categorys,
+            page: "Categorias"
         })
     })
 })
@@ -125,7 +128,8 @@ app.get("/categorys/:slug", (req, res) => {
             posts.find({ category: categorys._id }).sort({ date: "desc" }).then(posts => {
                 res.render("categorys/posts", {
                     posts: posts,
-                    categorys: categorys
+                    categorys: categorys,
+                    page: categorys.name
                 })
             }).catch(error => {
                 req.flash("error_msg", "Falha ao exibir postagens")
@@ -142,7 +146,9 @@ app.get("/categorys/:slug", (req, res) => {
 })
 
 app.get("/contact", (req, res) => {
-    res.render("contact/index")
+    res.render("contact/index", {
+        page: "Contato"
+    })
 })
 
 app.post("/contact", (req, res) => {
@@ -167,6 +173,7 @@ app.post("/contact", (req, res) => {
     if(errors.length) {
         res.render("contact/index", {
             errors: errors,
+            page: "Contato"
         })
     } else {
         const user = "blogdonode@gmail.com"

@@ -11,7 +11,8 @@ admin.get("/category", permissions.isAdmin, (req, res) => {
         date: "desc"
     }).then(categorys => {
        res.render("admin/category", {
-           categorys: categorys
+           categorys: categorys,
+           page: "Administrar Categorias"
        }) 
     }).catch(error => {
         req.flash("error_msg", "Falha ao listar as categorias")
@@ -21,7 +22,9 @@ admin.get("/category", permissions.isAdmin, (req, res) => {
 })
 
 admin.get("/category/create", permissions.isAdmin, (req, res) => {
-    res.render("admin/category-create")
+    res.render("admin/category-create", {
+        page: "Cadastrar Categoria"
+    })
 })
 
 admin.post("/category/new", permissions.isAdmin, (req, res) => {
@@ -37,7 +40,8 @@ admin.post("/category/new", permissions.isAdmin, (req, res) => {
 
     if(errors.length) {
         res.render("admin/category-create", {
-            errors: errors
+            errors: errors,
+            page: "Cadastrar Categoria"
         })
     } else {
         const slug = req.body.slug.toLowerCase().replace(/ /g, "-")
@@ -60,7 +64,8 @@ admin.post("/category/new", permissions.isAdmin, (req, res) => {
 admin.get("/category/edit/:id", permissions.isAdmin, (req, res) => {
     categorys.findOne({ _id: req.params.id }).then(category => {
         res.render("admin/category-edit", {
-        category: category
+            category: category,
+            page: `Editar Categoria ${category.name}`
     })
     }).catch(error => {
         req.flash("error_msg", "Essa categoria não existe")
@@ -81,7 +86,8 @@ admin.post("/category/edit", permissions.isAdmin, (req, res) => {
 
     if(errors.length) {
         res.render("admin/category-edit", {
-            errors: errors
+            errors: errors,
+            page: `Editar Categoria ${category.name}`
         })
     } else {
         categorys.findOne({ _id: req.body.id }).then(category => {
@@ -117,7 +123,8 @@ admin.post("/category/delete", permissions.isAdmin, (req, res) => {
 admin.get("/posts", permissions.isAdmin, (req, res) => {
     posts.find().populate("category").sort({ date: "desc" }).then(post => {
         res.render("admin/posts", {
-            post: post
+            post: post,
+            page: "Administrar Postagens"
         })
     }).catch(error => {
         req.flash("error_msg", "Falha ao exibir postagens")
@@ -128,7 +135,8 @@ admin.get("/posts", permissions.isAdmin, (req, res) => {
 admin.get("/posts/create", permissions.isAdmin, (req, res) => {
     categorys.find().then(categorys => {
         res.render("admin/posts-create", {
-            categorys: categorys
+            categorys: categorys,
+            page: "Cadastrar Postagem"
         })
     }).catch(error => {
         req.flash("error_msg", "Falha ao exibir formulário de postagem")
@@ -161,7 +169,8 @@ admin.post("/posts/new", permissions.isAdmin, (req, res) => {
 
     if(errors.length) {
         res.render("admin/posts-create", {
-            errors: errors
+            errors: errors,
+            page: "Cadastrar Postagem"
         })
     } else {
         const slug = req.body.slug.toLowerCase().replace(/ /g, "-")
@@ -189,7 +198,8 @@ admin.get("/posts/edit/:id", permissions.isAdmin, (req, res) => {
         categorys.find().then(categorys => {
             res.render("admin/posts-edit", {
                 posts: posts,
-                categorys: categorys
+                categorys: categorys,
+                page: `Editar Postagem ${posts.title}`
             })
         })
     }).catch(error => {
@@ -224,6 +234,7 @@ admin.post("/posts/edit", permissions.isAdmin, (req, res) => {
     if(errors.length) {
         res.render("admin/posts-edit", {
             errors: errors,
+            page: "Editar Postagem"
         })
     } else {
         posts.findOne({ _id: req.body.id }).then(posts => {
@@ -262,7 +273,8 @@ admin.post("/posts/delete", permissions.isAdmin, (req, res) => {
 admin.get("/users", permissions.isAdmin, (req, res) => {
     users.find().sort({ _id: "desc" }).then(users => {
         res.render("admin/users", {
-            users: users
+            users: users,
+            page: `Administrar Usuários`
         })
     })
 })
@@ -270,7 +282,8 @@ admin.get("/users", permissions.isAdmin, (req, res) => {
 admin.post("/users/edit/:id", permissions.isAdmin, (req, res) => {
     users.findOne({ _id: req.params.id }).then(user => {
         res.render("admin/users-edit", {
-            user: user
+            user: user,
+            page: `Editar Usuário ${user.fullName}`
         })
     })
 })
@@ -289,6 +302,7 @@ admin.post("/users/edit", permissions.isAdmin, (req, res) => {
     if(errors.length) {
         res.render("admin/users-edit", {
             errors: errors,
+            page: "Editar Usuário"
         })
     } else {
         users.findOne({ _id: req.body.id }).then(user => {
