@@ -17,6 +17,10 @@ const user = new Schema({
     permissions: {
         type: String,
         default: "client"
+    },
+    date: {
+        type: Date,
+        default: Date.now(),
     }
 })
 
